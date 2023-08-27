@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-#from movie import views as movieViews
+# from movie import views as movieViews
 from movie.views import HomeView, AboutView
+from news.views import NewsView
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -25,7 +26,9 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomeView.as_view(), name='home'),
-    path("about/", AboutView.as_view(), name = 'about'),
+    path("about/", AboutView.as_view(), name='about'),
+    path("news/", NewsView.as_view(), name='news'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
