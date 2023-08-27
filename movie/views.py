@@ -14,8 +14,18 @@ from .models import Movie
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         movies = Movie.objects.all
+        # Obtiene el valor de busqueda desde la URL
+        searchTerm = request.GET.get('searchMovie', '')
+
+        if searchTerm:
+            # Filtra películas por el valor de búsqueda
+            movies = Movie.objects.filter(title__icontains=searchTerm)
+        else:
+            movies = Movie.objects.all()
+
         context = {
-            'movies': movies
+            'movies': movies,
+            'searchTerm': searchTerm
         }
         return render(request, 'home.html', context)
 

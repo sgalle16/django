@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- 
     <h1>Welcome to Home page, <span style="color: red;">Santiago Gallego</span></h1>
     <h2>This is the full home page</h2>
     -->
     <h1>Movie List</h1>
     <div class="container">
-        <ul>
-            {% for movie in movies %}
-                <li>
-                    <h2>{{ movie.title }}</h2>
-                    <p>{{ movie.description }}</p>
-                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}">
-                    {% if movie.url %}
-                        <a href="{{ movie.url }}">Movie link</a>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>  
-    </br>
+      <form method="GET" action="{% url 'home' %}">
+        <div class="mb-3">
+          <label for="searchMovie" class="form-label">
+            Search for Movie:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="searchMovie"
+            value="{{ searchTerm }}"
+            placeholder="Search movies"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
 
-    
+      Searching for {{searchTerm}}
+
+      <ul>
+        {% for movie in movies %}
+        <li>
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.description }}</p>
+          <img src="{{ movie.image.url }}" alt="{{ movie.title }}" />
+          {% if movie.url %}
+          <a href="{{ movie.url }}">Movie link</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-</body>
+  </body>
 </html>
