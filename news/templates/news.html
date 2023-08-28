@@ -12,6 +12,7 @@
     />
   </head>
   <body>
+    {% extends 'base.html' %} {% block content %}
     <div class="container mt-5">
       <h2 class="mb-3">News List</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -31,4 +32,5 @@
       </div>
     </div>
   </body>
+  {% endblock %}
 </html>
