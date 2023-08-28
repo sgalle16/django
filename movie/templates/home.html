@@ -33,7 +33,6 @@
       </form>
 
       <p>Searching for {{searchTerm}}</p>
-      <br />
 
       {% if not searchTerm %}
 
@@ -85,28 +84,25 @@
       </div>
 
       <!-- Displaying a list of movies. -->
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% if movies %} {% for movie in movies %}
-        <div class="col mb-4">
-          <div class="card">
-            <img
-              src="{{ movie.image.url }}"
-              class="card-img-top"
-              alt="{{ movie.title }}"
-            />
-            <div class="card-body">
-              <h2 class="card-title fw-bold">{{ movie.title }}</h2>
-              <p class="card-text">{{ movie.description }}</p>
-              {% if movie.url %}
-              <a href="{{ movie.url }}" class="btn btn-primary">Movie link</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-        {% endfor %} {% else %}
-        <p>No movies found</p>
-        {% endif %}
-      </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% if movies %}
+          {% for movie in movies %}
+              <div class="col mb-4">
+                  <div class="card">
+                      <img src="{{ movie.image.url }}" class="card-img-top img-fluid" alt="{{ movie.title }}" style="max-height: 400px;" />
+                      <div class="card-body">
+                          <h2 class="card-title fw-bold">{{ movie.title }}</h2>
+                          <p class="card-text">{{ movie.description }}</p>
+                          {% if movie.url %}
+                              <a href="{{ movie.url }}" class="btn btn-primary">Movie link</a>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      {% else %}
+          <p>No movies found</p>
+      {% endif %}
     </div>
 
     <script
